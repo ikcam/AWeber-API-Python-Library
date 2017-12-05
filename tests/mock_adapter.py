@@ -1,7 +1,12 @@
 import json
 import os
-from urlparse import urlparse, parse_qs
-from urllib import quote
+
+try:
+    from urllib.parse import urlparse, parse_qs, quote
+except ImportError:  # Python < 3
+    from urlparse import urlparse, parse_qs
+    from urllib import quote
+
 
 import mock
 

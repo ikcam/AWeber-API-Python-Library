@@ -1,6 +1,9 @@
 import re
 from unittest import TestCase
-from urllib import urlencode
+try:
+    from urllib.parse import urlencode
+except ImportError:  # Python < 3
+    from urllib import urlencode
 
 from aweber_api import AWeberAPI, AWeberCollection, AWeberEntry
 from aweber_api.base import APIException
