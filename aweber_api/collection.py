@@ -1,6 +1,10 @@
 from math import floor
-from urlparse import parse_qs
-from urllib import urlencode
+try:
+    from urllib.parse import parse_qs
+    from urllib.parse import urlencode
+except ImportError:  # Python < 3
+    from urlparse import parse_qs
+    from urllib import urlencode
 
 from aweber_api.base import API_BASE
 from aweber_api.entry import AWeberEntry
@@ -123,6 +127,9 @@ class AWeberCollection(AWeberResponse):
         return self
 
     def next(self):
+        return self.__next__()
+
+    def __next__(self):
         """Get the next entry in the collection."""
         if self._current < self.total_size:
             self._current += 1

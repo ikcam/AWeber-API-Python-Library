@@ -1,4 +1,7 @@
-from urllib import urlencode
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
 
 import aweber_api
 from aweber_api.data_dict import DataDict

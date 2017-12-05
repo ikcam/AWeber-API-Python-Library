@@ -1,4 +1,7 @@
-from urllib import urlencode
+try:
+    from urllib.parse import urlencode
+except ImportError:  # Python < 3
+    from urllib import urlencode
 import json
 import os
 
